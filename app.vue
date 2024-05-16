@@ -1,7 +1,14 @@
-<template>
+ <script setup lang="ts">
+ import HeaderLayout from './layouts/HeaderLayout/HeaderLayout.vue'
+</script>
+ <template>
   <div>
-    <NuxtLayout >
+
+<HeaderLayout/>
       <NuxtPage />
-    </NuxtLayout>
+    <NuxtLayout/>
   </div>
 </template>
+<style>
+
+</style>
