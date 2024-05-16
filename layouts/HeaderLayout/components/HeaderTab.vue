@@ -20,7 +20,7 @@ const selectTab = (tab: string) => {
       >
         Characters
       </router-link>
-      <router-link
+      <!-- <router-link
         to="/episodes"
         class="tab"
         :class="{ 'active-tab': activeTab === 'episodes' }"
@@ -35,7 +35,7 @@ const selectTab = (tab: string) => {
         @click="selectTab('locations')"
       >
         Locations
-      </router-link>
+      </router-link> -->
     </div>
   </template>
   
