@@ -10,6 +10,7 @@ export const useCharacterService = () => {
   let searchStatus = ref("");
   let searchSpecies = ref("");
   let searchGender = ref("");
+  let searchPage = ref(1);
 
   const setSearchName = (name: string) => {
     searchName.value = name;  
@@ -17,7 +18,7 @@ export const useCharacterService = () => {
   }
   const setSearchStatus = (status: string) => {
     searchStatus.value = status;  
-
+    fetchCharacters()
   }
   const setSearchSpecies = (status: string) => {
     searchSpecies.value = status;  
@@ -27,16 +28,20 @@ export const useCharacterService = () => {
     searchGender.value = status;  
 
   }
+
+  const setSearchPage =  (page: number) => {
+    searchPage.value = page
+    fetchCharacters()}
   const fetchCharacters = async () => {
     const { data } = await useFetch(
-      `${base_url}/character?page=1&name=${searchName.value}&status=${searchStatus.value}&gender=${searchGender.value}&species=${searchSpecies.value}`,
+      `${base_url}/character?page=${searchPage.value}&name=${searchName.value}&status=${searchStatus.value}`,
       {
         method: "GET",
       }
     ).json();
-    console.log(data.value)
-    characters.value = data.value.results;
-    // total.value = data.value.total;
+      characters.value = data.value.results;
+    total.value = data.value.info.count;
+    console.log(data.value.info.count)
   };
   
 
@@ -48,9 +53,11 @@ export const useCharacterService = () => {
     searchStatus,
     searchSpecies,
     searchGender,
+    searchPage,
     setSearchName,
     setSearchStatus,
     setSearchSpecies,
     setSearchGender,
+    setSearchPage,
   };
 };
